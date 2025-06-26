@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amit Pariyar | Content Creator</title>
+  <style>
+    :root {
+      --bg: #f9f9f9;
+      --text: #222;
+      --card: #fff;
+      --accent: #00aaff;
+      --button: #28a745;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #fff;
+      --card: #1e1e1e;
+      --accent: #3399ff;
+      --button: #32cd32;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    header {
+      background: var(--card);
+      padding: 2.5rem 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      margin-bottom: 1rem;
+    }
+
+    section {
+      max-width: 960px;
+      margin: 2rem auto;
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      padding: 0.75rem 2rem;
+      border: none;
+      background: var(--button);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--card);
+      color: var(--text);
+    }
+
+    /* 🌙 Dark Mode Toggle */
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .circle-img {
+   width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      margin-bottom: 1rem;  
+}
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      background-color: #ccc;
+      border-radius: 24px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: 0.4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 2px;
+      bottom: 2px;
+      background-color: black;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+      background: white;
+    }
+
+    /* 🌐 Language Toggle */
+    .lang-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 998;
+    }
+
+    .lang-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: white;
+      margin-bottom: 3px;
+      background: #00aaff;
+      padding: 2px 6px;
+      border-radius: 12px;
+      width: 50px;
+    }
+    .add-btn {
+  background-color: #28a745; /* green */
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #218838;
+}
+.product button {
+      margin-top: 0.5rem;
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🌗 Dark Mode Toggle -->
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" onchange="toggleDarkMode()" id="darkToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- 🌐 Language Toggle Switch -->
+  <div class="lang-toggle">
+    <div class="lang-labels"><span>EN</span><span>ने</span></div>
+    <label class="switch">
+      <input type="checkbox" onchange="toggleLanguage()" id="langSwitch">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <header>
+    <img src="https://i.ibb.co/SX1vZ9Lh/IMG-20250326-WA0011.jpg" alt="Amit Pariyar" class="profile-img" />
+    <h1 id="name">Amit Pariyar</h1>
+    <p id="tagline">Content Creator | Social Media Influencer</p>
+  </header>
+
+  <section id="about">
+    <h2 id="aboutTitle">About Me</h2>
+    <p id="aboutText">
+      Hello! I'm Amit Pariyar, a passionate content creator and influencer. I create content on YouTube, TikTok, and Instagram. I love to inspire and connect with people.
+    </p>
+  </section>
+
+  <section id="socials">
+    <h2 id="socialTitle">Follow Me</h2>
+    <div class="social-links">
+      <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+      <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/" target="_blank">TikTok</a>
+      <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <h2>Bye Now</h2>
+    <div class="products">
+  <div class="product">
+    <img src="https://th.bing.com/th/id/OIP.X6BmmLKH7q_yJ7_Ed83UQQHaHa?rs=1&pid=ImgDetMain&cb=idpwebpc2" 
+         alt="Product 1" 
+         class="circle-img">
+    <h3>Wireless Earbuds</h3>
+    <p>Price: Rs. 1800</p>
+  </div>
+</div>
+
+        <button class="add-btn" onclick="addToCart('Wireless Earbuds', 1800)">Add to Cart</button>
+      </div>  
+      <div class="products2">
+      <div class="product">
+        <img src="https://th.bing.com/th/id/OIP.zFTyIdFgQrQPp2XjBkWAngHaEK?rs=1&pid=ImgDetMain&cb=idpwebpc2"
+         alt="Product 2"
+         class="circle-img">
+        <h3>Smart Watch</h3>
+        <p>Price: Rs. 2500</p>
+        <button onclick="addToCart('Smart Watch', 2500)">Add to Cart</button>
+      </div>
+      </div>
+    </div> <div class="cart">
+      <h3>Shopping Cart</h3>
+      <ul id="cartItems"></ul>
+      <p>Total: Rs. <span id="totalAmount">0</span></p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 id="contactTitle">Contact Me</h2>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit" id="sendBtn">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Amit Pariyar. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    function toggleLanguage() {
+      const isNepali = document.getElementById("langSwitch").checked;
+      const np = {
+        name: "अमित परियार",
+        tagline: "सामग्री निर्माता | सामाजिक प्रभावकार",
+        aboutTitle: "मेरो बारेमा",
+        aboutText: "नमस्कार! म अमित परियार, एक भावुक कन्टेन्ट क्रिएटर र इन्फ्लुएन्सर हुँ। म YouTube, TikTok र Instagram मा सामग्री बनाउँछु। म प्रेरित गर्न र जोडिन मन पराउँछु।",
+        socialTitle: "मलाई फलो गर्नुहोस्",
+        portfolioTitle: "मेरो काम",
+        contactTitle: "सम्पर्क गर्नुहोस्",
+        sendBtn: "पठाउनुहोस्"
+      };
+      const en = {
+        name: "Amit Pariyar",
+        tagline: "Content Creator | Social Media Influencer",
+        aboutTitle: "About Me",
+        aboutText: "Hello! I'm Amit Pariyar, a passionate content creator and influencer. I create content on YouTube, TikTok, and Instagram. I love to inspire and connect with people.",
+        socialTitle: "Follow Me",
+        portfolioTitle: "My Work",
+        contactTitle: "Contact Me",
+        sendBtn: "Send"
+      };
+      const lang = isNepali ? np : en;
+      for (let key in lang) {
+        const el = document.getElementById(key);
+        if (el) el.textContent = lang[key];
+      }
+    }
+  </script>
+
+</body>
+</html>
